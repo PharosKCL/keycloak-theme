@@ -1,0 +1,108 @@
+/* Keycloak Login Form Overrides for PharosAI Theme */
+
+/* Hide default Keycloak styling */
+.login-pf body {
+    background: none !important;
+}
+
+.login-pf .container {
+    background: none !important;
+}
+
+.login-pf-page {
+    background: #0a0a1a !important;
+}
+
+/* Override form styling to match PharosAI theme */
+#kc-form {
+    width: 100%;
+}
+
+#kc-form-login {
+    width: 100%;
+}
+
+/* Override input styling */
+.pf-c-form-control, input[type="text"], input[type="password"], input[type="email"] {
+    background: rgba(14, 14, 35, 0.6) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    border-radius: 0.5rem !important;
+}
+
+.pf-c-form-control:focus, input:focus {
+    border-color: #ee366d !important;
+    box-shadow: 0 0 0 2px rgba(238, 54, 109, 0.2) !important;
+}
+
+/* Override button styling */
+.pf-c-button, .btn, input[type="submit"] {
+    background: linear-gradient(135deg, #ee366d 0%, #de1379 100%) !important;
+    border: none !important;
+    color: white !important;
+    font-weight: 600 !important;
+    border-radius: 0.5rem !important;
+    padding: 0.75rem 2rem !important;
+    transition: all 0.3s ease !important;
+}
+
+.pf-c-button:hover, .btn:hover, input[type="submit"]:hover {
+    transform: scale(1.05) !important;
+    box-shadow: 0 10px 25px rgba(238, 54, 109, 0.4) !important;
+}
+
+/* Override alert styling */
+.pf-c-alert {
+    background: rgba(14, 14, 35, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0.5rem !important;
+    color: white !important;
+}
+
+.pf-c-alert.pf-m-danger {
+    border-color: #ef4444 !important;
+}
+
+.pf-c-alert.pf-m-warning {
+    border-color: #f59e0b !important;
+}
+
+.pf-c-alert.pf-m-success {
+    border-color: #10b981 !important;
+}
+
+/* Override label styling */
+.pf-c-form__label, label {
+    color: #d1d5db !important;
+    font-weight: 500 !important;
+}
+
+/* Override checkbox styling */
+input[type="checkbox"] {
+    accent-color: #ee366d !important;
+}
+
+/* Override link styling */
+a {
+    color: #ee366d !important;
+    transition: color 0.2s ease !important;
+}
+
+a:hover {
+    color: #de1379 !important;
+}
+
+/* Social provider buttons */
+.kc-social-links .kc-social-provider-name {
+    color: #d1d5db !important;
+}
+
+.kc-social-item {
+    background: rgba(14, 14, 35, 0.6) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0.5rem !important;
+}
+
+.kc-social-item:hover {
+    background: rgba(55, 65, 81, 0.3) !important;
+}
