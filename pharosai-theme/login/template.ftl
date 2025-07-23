@@ -20,7 +20,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-    <link href="https://theme.pharosai.co.uk/assets/styles/theme.css" rel="stylesheet">
+    
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="https://theme.pharosai.co.uk/assets/styles/theme.css">
     
     <#if properties.stylesCommon?has_content>
         <#list properties.stylesCommon?split(' ') as style>
@@ -45,22 +47,25 @@
 </head>
 
 <body class="antialiased login-pf ${bodyClass}">
+    <div class="animated-bg">
+        <canvas id="brain-canvas" data-neuron-count="40" class="brain-canvas"></canvas>
+    </div>
 
     <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-effect" id="navbar">
-        <div class="container mx-auto px-6 py-3">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                    <img src="${url.resourcesPath}/img/logo.png" alt="Pharos AI Logo" class="h-12 w-12 rounded-lg shadow-lg bg-white bg-opacity-10 p-1.5">
-                    <div class="text-2xl font-bold text-white tracking-wider">
-                        <span style="color: #f18322;">P</span>haros<span style="color: #f18322;">AI</span>
+    <header class="navbar glass-effect" id="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <div class="navbar-brand">
+                    <img src="${url.resourcesPath}/img/logo.png" alt="Pharos AI Logo" class="brand-logo">
+                    <div class="brand-text">
+                        <span class="brand-highlight">P</span>haros<span class="brand-highlight">AI</span>
                     </div>
                 </div>
                 <#if realm.internationalizationEnabled && locale.supported?size gt 1>
                     <div id="kc-locale">
                         <div id="kc-locale-wrapper" class="${properties.kcLocaleWrapperClass!}">
                             <div class="kc-dropdown" id="kc-locale-dropdown">
-                                <a href="#" id="kc-current-locale-link" class="text-gray-400 hover:text-white transition duration-200">${locale.current}</a>
+                                <a href="#" id="kc-current-locale-link" class="nav-back-btn">${locale.current}</a>
                                 <ul class="${properties.kcLocaleListClass!}">
                                     <#list locale.supported as l>
                                         <li class="kc-dropdown-item"><a href="${l.url}" class="${properties.kcLocaleItemClass!}">${l.label}</a></li>
@@ -75,13 +80,10 @@
     </header>
 
     <!-- Main Dialog Section -->
-    <section class="animated-bg min-h-screen flex items-center justify-center py-20">
-        <div class="absolute inset-0 opacity-30">
-            <canvas id="brain-canvas" data-neuron-count="40" class="brain-canvas w-full h-full"></canvas>
-        </div>
-        <div class="container mx-auto px-6 content-overlay">
-            <div class="max-w-lg mx-auto">
-                <div class="login-card glass-effect rounded-2xl p-8 shadow-2xl">
+    <section class="dialog-section pt-navbar">
+        <div class="container">
+            <div class="dialog-wrapper max-w-lg">
+                <div class="card glass-effect">
                     <div id="kc-container" class="${properties.kcContainerClass!}">
                         <div id="kc-container-wrapper" class="${properties.kcContainerWrapperClass!}">
 
@@ -98,7 +100,7 @@
                                 </#if>
                             <#else>
                                 <#nested "show-username">
-                                <div id="kc-username" class="${properties.kcFormGroupClass!}">
+                                <div id="kc-username" class="form-group">
                                     <label id="kc-attempted-username">${auth.attemptedUsername}</label>
                                     <a id="reset-login" href="${url.loginRestartFlowUrl}">
                                         <div class="kc-login-tooltip">
@@ -115,12 +117,18 @@
                                     <#-- App-initiated actions should not see warning messages about the need to complete the action -->
                                     <#-- during login.                                                                               -->
                                     <#if displayMessage && message?has_content && (message.type != 'warning' || !isAppInitiatedAction??)>
-                                        <div class="alert alert-${message.type} mb-4 p-4 rounded-lg border ${message.type == 'error'?then('border-red-500 bg-red-900/20 text-red-200', message.type == 'warning'?then('border-yellow-500 bg-yellow-900/20 text-yellow-200', 'border-green-500 bg-green-900/20 text-green-200'))}">
-                                            <#if message.type = 'success'><span class="${properties.kcFeedbackSuccessIcon!}"></span></#if>
-                                            <#if message.type = 'warning'><span class="${properties.kcFeedbackWarningIcon!}"></span></#if>
-                                            <#if message.type = 'error'><span class="${properties.kcFeedbackErrorIcon!}"></span></#if>
-                                            <#if message.type = 'info'><span class="${properties.kcFeedbackInfoIcon!}"></span></#if>
-                                            <span class="kc-feedback-text">${kcSanitize(message.summary)?no_esc}</span>
+                                        <div class="alert alert-${message.type}">
+                                            <div class="alert-content">
+                                                <div class="alert-icon">
+                                                    <#if message.type = 'success'><i data-lucide="check"></i></#if>
+                                                    <#if message.type = 'warning'><i data-lucide="alert-triangle"></i></#if>
+                                                    <#if message.type = 'error'><i data-lucide="alert-circle"></i></#if>
+                                                    <#if message.type = 'info'><i data-lucide="info"></i></#if>
+                                                </div>
+                                                <div class="alert-body">
+                                                    <span class="kc-feedback-text">${kcSanitize(message.summary)?no_esc}</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </#if>
 
@@ -128,11 +136,11 @@
 
                                     <#if auth?has_content && auth.showTryAnotherWayLink() && showAnotherWayIfPresent>
                                         <form id="kc-select-try-another-way-form" action="${url.loginAction}" method="post">
-                                            <div class="${properties.kcFormGroupClass!} mt-4">
+                                            <div class="form-group mt-4">
                                                 <input type="hidden" name="tryAnotherWay" value="on"/>
                                                 <a href="#" id="try-another-way"
                                                    onclick="document.forms['kc-select-try-another-way-form'].submit();return false;"
-                                                   class="text-[#ee366d] hover:text-[#de1379] transition duration-200">${msg("doTryAnotherWay")}</a>
+                                                   class="text-accent">${msg("doTryAnotherWay")}</a>
                                             </div>
                                         </form>
                                     </#if>

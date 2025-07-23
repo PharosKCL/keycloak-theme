@@ -22,35 +22,6 @@
     width: 100%;
 }
 
-/* Override input styling */
-.pf-c-form-control, input[type="text"], input[type="password"], input[type="email"] {
-    background: rgba(14, 14, 35, 0.6) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    color: white !important;
-    border-radius: 0.5rem !important;
-}
-
-.pf-c-form-control:focus, input:focus {
-    border-color: #ee366d !important;
-    box-shadow: 0 0 0 2px rgba(238, 54, 109, 0.2) !important;
-}
-
-/* Override button styling */
-.pf-c-button, .btn, input[type="submit"] {
-    background: linear-gradient(135deg, #ee366d 0%, #de1379 100%) !important;
-    border: none !important;
-    color: white !important;
-    font-weight: 600 !important;
-    border-radius: 0.5rem !important;
-    padding: 0.75rem 2rem !important;
-    transition: all 0.3s ease !important;
-}
-
-.pf-c-button:hover, .btn:hover, input[type="submit"]:hover {
-    transform: scale(1.05) !important;
-    box-shadow: 0 10px 25px rgba(238, 54, 109, 0.4) !important;
-}
-
 /* Override alert styling */
 .pf-c-alert {
     background: rgba(14, 14, 35, 0.8) !important;
@@ -75,21 +46,6 @@
 .pf-c-form__label, label {
     color: #d1d5db !important;
     font-weight: 500 !important;
-}
-
-/* Override checkbox styling */
-input[type="checkbox"] {
-    accent-color: #ee366d !important;
-}
-
-/* Override link styling */
-a {
-    color: #ee366d !important;
-    transition: color 0.2s ease !important;
-}
-
-a:hover {
-    color: #de1379 !important;
 }
 
 /* Social provider buttons */

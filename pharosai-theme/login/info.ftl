@@ -43,26 +43,9 @@
                 
                 <a href="${url.loginUrl}" 
                    class="glass-effect w-full inline-flex justify-center py-3 px-4 rounded-lg shadow-sm hover:bg-gray-700/30 transition duration-200 text-gray-300">
-                    <i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i>
-                    ${msg("backToLogin")}
+                    ${msg("backToLogin")?no_esc}
                 </a>
             </div>
         </div>
     </#if>
 </@layout.registrationLayout>
-
-<script>
-// Initialize icons when document loads
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize brain animation if canvas exists
-    const brainCanvas = document.getElementById('brain-canvas');
-    if (brainCanvas && typeof initBrainAnimation === 'function') {
-        initBrainAnimation('brain-canvas');
-    }
-    
-    // Initialize Lucide icons
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-});
-</script>

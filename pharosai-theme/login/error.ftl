@@ -32,32 +32,15 @@
                 <#if client?? && client.baseUrl?has_content>
                     <a href="${client.baseUrl}" 
                        class="btn-primary w-full font-bold py-3 px-4 rounded-lg text-lg shadow-lg hover:shadow-2xl transform hover:scale-105 transition duration-300 ease-in-out glow-effect text-center block">
-                        ${kcSanitize(msg("backToApplication"))?no_esc}
+                        ${msg("backToApplication")?no_esc}
                     </a>
                 </#if>
                 
                 <a href="${url.loginUrl}" 
-                   class="glass-effect w-full inline-flex justify-center py-3 px-4 rounded-lg shadow-sm hover:bg-gray-700/30 transition duration-200 text-gray-300">
-                    <i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i>
-                    ${msg("backToLogin")}
+                   class="btn btn-glass w-full">
+                    ${msg("backToLogin")?no_esc}
                 </a>
             </div>
         </div>
     </#if>
 </@layout.registrationLayout>
-
-<script>
-// Initialize icons when document loads
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize brain animation if canvas exists
-    const brainCanvas = document.getElementById('brain-canvas');
-    if (brainCanvas && typeof initBrainAnimation === 'function') {
-        initBrainAnimation('brain-canvas');
-    }
-    
-    // Initialize Lucide icons
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-});
-</script>

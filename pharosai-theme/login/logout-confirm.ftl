@@ -37,19 +37,3 @@
         </div>
     </#if>
 </@layout.registrationLayout>
-
-<script>
-// Initialize icons when document loads
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize brain animation if canvas exists
-    const brainCanvas = document.getElementById('brain-canvas');
-    if (brainCanvas && typeof initBrainAnimation === 'function') {
-        initBrainAnimation('brain-canvas');
-    }
-    
-    // Initialize Lucide icons
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-});
-</script>
