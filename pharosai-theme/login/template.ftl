@@ -20,6 +20,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://theme.pharosai.co.uk/assets/styles/theme.css" rel="stylesheet">
     
     <#if properties.stylesCommon?has_content>
         <#list properties.stylesCommon?split(' ') as style>
@@ -41,60 +42,6 @@
             <script src="${script}" type="text/javascript"></script>
         </#list>
     </#if>
-
-    <style>
-    /* Brain/Neuron Canvas Styles */
-    #neuron-canvas, .brain-canvas {
-        width: 100%;
-        height: 100%;
-    }
-
-    /* Background and brain animation containers */
-    .animated-bg {
-        position: relative;
-        background-color: #0a0a1a;
-        overflow: hidden;
-    }
-
-    .animated-bg canvas {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-    }
-
-    .content-overlay {
-        position: relative;
-        z-index: 1;
-    }
-
-    /* Hide default keycloak styles that conflict */
-    body.login-pf {
-        background: #0a0a1a !important;
-    }
-    
-    .login-pf-page {
-        background: #0a0a1a !important;
-    }
-
-    #kc-header {
-        display: none;
-    }
-
-    #kc-container {
-        position: relative;
-        z-index: 1;
-    }
-
-    #kc-container-wrapper {
-        background: transparent;
-        border: none;
-        box-shadow: none;
-        padding: 0;
-    }
-    </style>
 </head>
 
 <body class="antialiased login-pf ${bodyClass}">
@@ -208,24 +155,7 @@
     </section>
 
     <!-- Scripts -->
-    <script src="${url.resourcesPath}/js/theme.js"></script>
-    <script src="${url.resourcesPath}/js/brain.js"></script>
-    <script>
-        // Initialize brain animation
-        try {
-            initBrainAnimation('brain-canvas');
-        } catch (e) {
-            console.log('Brain animation not available:', e);
-        }
-        
-        // Initialize Lucide icons
-        try {
-            lucide.createIcons();
-        } catch (e) {
-            console.log('Lucide icons not available:', e);
-        }
-    </script>
-
+    <script src="https://theme.pharosai.co.uk/assets/js/theme.js"></script>
 </body>
 </html>
 </#macro>
